@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博客</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/lib/editormd/css/editormd.min.css" th:href="@{/lib/editormd/css/editormd.min.css}">
+    <link rel="stylesheet" href="../static/css/typo.css" th:href="@{/css/typo.css}">
+    <link rel="stylesheet" href="../static/css/my.css" th:href="@{/css/my.css}">
+    <link rel="stylesheet" href="../static/lib/prismjs/prism.css" th:href="@{/lib/prismjs/prism.css}">
+    <link rel="stylesheet" href="../static/lib/tocbot/tocbot.css" th:href="@{/lib/tocbot/tocbot.css}">
+    <link rel="stylesheet" href="../static/css/square.css" th:href="@{/css/square.css}">
+</head>
+<body>
+<nav th:fragment="menu(n)" class="ui  attached segment my-padded-tb-min my-shadow-menu" style="background-color:#204969 !important;"><!-- inverted为默认黑色效果 -->
+    <div class="ui container">
+        <div class="ui inverted secondary stackable menu"><!-- stackable可堆叠 -->
+            <h2 class="ui  header item">后台管理</h2>
+            <a href="#" th:href="@{/manage/blogs}" class=" menu-it item my-mobile-hide" th:classappend="${n==1} ? 'active'"><i class="home icon"></i>博客管理</a>
+            <a href="#" th:href="@{/manage/tags}" class=" menu-it item my-mobile-hide" th:classappend="${n==2} ? 'active'"><i class="paperclip icon"></i>标签管理</a>
+            <a href="#" th:href="@{/manage/types}" class="menu-it item my-mobile-hide" th:classappend="${n==3} ? 'active'"><i class="tags icon"></i>分类管理</a>
+            <div class="right menu-it menu my-mobile-hide">
+                <div class="ui dropdown item">
+                    <div class="text">
+                        <img class="ui avatar image" src="https://picsum.photos/id/1025/100/100" >
+                        zsw
+                    </div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a href="#" th:href="@{/manage/logout}" class="item">注销</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<th:block th:fragment="script">
+    <script src=https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
+    <script src=https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <script src="../static/lib/prismjs/prism.js" th:src="@{/lib/prismjs/prism.js}"></script>
+    <script src="../static/lib/editormd/editormd.min.js" th:src="@{/lib/editormd/editormd.min.js}"></script>
+    <script src="../static/lib/tocbot/tocbot.min.js" th:src="@{/lib/tocbot/tocbot.min.js}"></script>
+    <script src="../static/lib/qrcode/qrcode.min.js" th:src="@{/lib/qrcode/qrcode.min.js}"></script>
+    <script src="../static/lib/waypoints/jquery.waypoints.min.js" th:src="@{/lib/waypoints/jquery.waypoints.min.js}"></script>
+</th:block>
+
+
+
+</body>
+</html>

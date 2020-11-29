@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博客</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/typo.css" th:href="@{/css/typo.css}">
+    <link rel="stylesheet" href="../static/css/my.css" th:href="@{/css/my.css}">
+    <link rel="stylesheet" href="../static/lib/prismjs/prism.css" th:href="@{/lib/prismjs/prism.css}">
+    <link rel="stylesheet" href="../static/lib/tocbot/tocbot.css" th:href="@{/lib/tocbot/tocbot.css}">
+    <link rel="stylesheet" href="../static/css/square.css" th:href="@{/css/square.css}">
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="../static/css/intro.css" th:href="@{/css/intro.css}">
+</head>
+<body>
+<!-- 导航 -->
+<nav th:fragment="menu(n)" class=" nav attached segment my-padded-tb-min " style="background-color:#204969;">
+    <div class="ui container">
+        <div class="ui inverted  secondary stackable menu">
+            <a href="#"  class="menu-it item my-mobile-hide"><i class=" fa fa-github-alt fa-4x " onclick="window.history.go(-1)" style="color: white;"></i></a>
+            <a href="#" th:href="@{/}" class="menu-it item my-mobile-hide" th:classappend="${n==1} ? 'active'"><i class="home icon"></i>首页</a>
+            <a href="#" th:href="@{/tags/-1}" class="menu-it item my-mobile-hide" th:classappend="${n==2} ? 'active'"><i class="paperclip icon"></i>标签</a>
+            <a href="#" th:href="@{/types/-1}" class="menu-it item my-mobile-hide" th:classappend="${n==3} ? 'active'"><i class="tags icon"></i>分类</a>
+            <a href="#" th:href="@{/about}" class="menu-it item my-mobile-hide" th:classappend="${n==4} ? 'active'"><i class="coffee icon"></i>关于</a>
+            <a href="#" th:href="@{/archives}" class="menu-it item my-mobile-hide" th:classappend="${n==5} ? 'active'"><i class="folder icon"></i>总览</a>
+            <!-- 搜索栏 -->
+            <div class="right menu-it item my-mobile-hide">
+                <form action="#" th:action="@{/search}" method="post" target="_blank">
+                    <div class="ui icon input">
+                        <input type="text" name="query" placeholder="查查啊，查查看有没有" th:value="${query}">
+                        <i onclick="document.forms['search'].submit()" class="search link icon"></i><!--提交表单“search”-->
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- 移动端菜单 -->
+        <div class="ui menu toggle icon secondary button my-top-right my-nonmobile-hide">
+            <!-- class值 menu toggle -->
+            <i class="fa fa-github-alt fa-2x" style="color:white;"></i></i></div>
+    </div>
+</nav>
+
+<th:block th:fragment="script">
+    <script src=https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
+    <script src=https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <script src="../static/lib/prismjs/prism.js" th:src="@{/lib/prismjs/prism.js}"></script>
+    <script src="../static/lib/editormd/editormd.min.js" th:src="@{/lib/editormd/editormd.min.js}"></script>
+    <script src="../static/lib/tocbot/tocbot.min.js" th:src="@{/lib/tocbot/tocbot.min.js}"></script>
+    <script src="../static/lib/qrcode/qrcode.min.js" th:src="@{/lib/qrcode/qrcode.min.js}"></script>
+    <script src="../static/lib/waypoints/jquery.waypoints.min.js" th:src="@{/lib/waypoints/jquery.waypoints.min.js}"></script>
+</th:block>
+
+
+
+</body>
+</html>

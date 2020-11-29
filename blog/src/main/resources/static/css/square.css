@@ -1,0 +1,235 @@
+/* *
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+} */
+body {
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; */
+    background:  #204969;
+}
+.square {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.square span:nth-child(1) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #204969;
+    border-radius: 37% 60% 61% 36% /41% 44% 56% 59%;
+    transition: 0.5s;
+    animation: animate 6s linear infinite;
+}
+.square:hover span:nth-child(1) {
+    border: none;
+    background:  #204969;
+
+}
+.square span:nth-child(2) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #204969;
+    border-radius: 37% 60% 61% 36% /41% 44% 56% 59%;
+    transition: 0.5s;
+    animation: animate 4s linear infinite;
+}
+.square:hover span:nth-child(2) {
+    border: none;
+    background:  #204969;
+
+}
+.square span:nth-child(3) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #204969;
+    border-radius: 37% 60% 61% 36% /41% 44% 56% 59%;
+    transition: 0.5s;
+    animation: animate2 10s linear infinite;
+}
+.square:hover span:nth-child(3) {
+    border:white;
+    background:  #204969;
+
+}
+
+
+@keyframes animate{
+    0%{
+      transform: rotate(0deg);
+    }
+    100%{
+      transform: rotate(360deg);
+    }
+    
+  }
+  @keyframes animate2{
+    0%{
+      transform: rotate(360deg);
+    }
+    100%{
+      transform: rotate(0deg);
+    }
+    
+  }
+.content-s{
+      position: relative;
+      padding: 30px 30px;
+      color: #204969;
+      text-align: center;
+      transition: 0.5s;
+      z-index: 11;
+  }
+.content-s:hover{
+    background-color: none;
+    color:  white;
+}
+.content-s-a{
+      position: relative;
+      display: block;
+      margin-top: 10px;
+      border: 2px solid #204969;
+      padding: 6px 18px;
+      text-decoration: none;
+      color:#204969;
+      font-weight: 600;
+      border-radius: 71% 14% 56% 31% /41% 44% 56% 59%;
+      z-index: 11;
+  }
+.content-s-a:hover{
+    border:2px solid white;
+    background-color: #204969;
+    color:white;
+}
+
+/* square-2 */
+.square2 {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+.square2 span:nth-child(1) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #204969;
+  background:  #204969;
+  border-radius: 37% 60% 61% 36% /41% 44% 56% 59%;
+  transition: 0.5s;
+  animation: animate 6s linear infinite;
+}
+.square2:hover span:nth-child(1) {
+  border: 2px solid  #204969;
+  background: none;
+  
+
+}
+.square2 span:nth-child(2) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #204969;
+  background:  #204969;
+  border-radius: 37% 60% 61% 36% /41% 44% 56% 59%;
+  transition: 0.5s;
+  animation: animate 4s linear infinite;
+}
+.square2:hover span:nth-child(2) {
+  border:2px solid #204969;
+  background: none;
+  
+
+}
+.square2 span:nth-child(3) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #204969;
+  background:  #204969;
+  border-radius: 37% 60% 61% 36% /41% 44% 56% 59%;
+  transition: 0.5s;
+  animation: animate2 10s linear infinite;
+}
+.square2:hover span:nth-child(3) {
+  border: 2px solid  #204969;
+  background: none;
+  
+
+}
+
+
+@keyframes animate{
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+  
+}
+@keyframes animate2{
+  0%{
+    transform: rotate(360deg);
+  }
+  100%{
+    transform: rotate(0deg);
+  }
+  
+}
+.content-s2{
+    position: relative;
+    padding: 30px 30px;
+    color: white;
+    text-align: center;
+    transition: 0.5s;
+    z-index: 11;
+}
+.content-s2:hover{
+  background-color: none;
+  color:  #204969;
+}
+.content-s-a2{
+    position: relative;
+    display: block;
+    margin-top: 10px;
+    border: 2px solid white;
+    padding: 6px 18px;
+    text-decoration: none;
+    color:white;
+    font-weight: 600;
+    border-radius: 71% 14% 56% 31% /41% 44% 56% 59%;
+    z-index: 11;
+}
+.content-s-a2:hover{
+  border:2px solid #204969;
+  background-color: white;
+  color: #204969;
+}
+

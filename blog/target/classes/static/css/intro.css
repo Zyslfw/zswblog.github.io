@@ -1,0 +1,171 @@
+body {
+    background-color: #204969;
+}
+
+/* 流光按钮 */
+.intoButton {
+    text-decoration: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    display: flex;
+    transform: translate(-50%,-50%);
+    font-size: 20px;
+    background: linear-gradient(90deg, #9970e6, #eb0c62, #e0df8f, #9970e6);
+    background-size: 400%;
+    width: 200px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    color: #fff;
+    border-radius: 50px;
+    z-index: 1;
+}
+.intoButton::before {
+    content: "";
+    position: absolute;
+    display: flex;
+    left: -5px;
+    right: -5px;
+    top: -5px;
+    bottom: -5px;
+    background: linear-gradient(90deg, #9970e6, #eb0c62, #e0df8f, #9970e6);
+    background-size: 400%;
+    border-radius: 50px;
+    /* border:1px solid red; */
+    filter: blur(10px);
+    z-index: -1;
+}
+.intoButton:hover::before {
+    animation: flashButton 8s infinite;
+}
+.intoButton:hover{
+    animation: flashButton 8s infinite;
+}
+@keyframes flashButton{
+    100%{
+        background-position: -400% 0;
+    }
+}
+
+/* 裂开效果 */
+section{
+    width: 100%;
+    height: 100px;
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+section .section_item{
+    /* border: 1px solid blue; */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: filter 0.5s,transform 0.5s;
+}
+section .section_item .d{
+    color: #fff;
+    font-size: 10vw;
+    top: 0;
+    opacity: 1;
+    transition: top 0.5s,opacity 0.5s;
+}
+
+/* 切割文字 */
+section .section_item .d:nth-child(1){
+    position: absolute;
+    clip-path: polygon(0% 0%,100% 0%,100% 51%,0% 51%);
+}
+section .section_item .d:nth-child(2){
+    position: relative;
+    clip-path: polygon(0% 50%,100% 50%,100% 100%,0% 100%);
+}
+/* 触发景深效果 */
+section:hover .section_item{
+    filter: blur(10px);
+    transform: scale(0.8);
+    transition: filter 0.5s,transform 0.5s;
+}
+/* 对应的取消景深效果 */
+section .section_item:hover{
+    filter: blur(0px);
+    transform: scale(1.1);
+    transition: filter 0.5s,transform 0.5s;
+}
+/* 上半部分上移并变淡 */
+section .section_item:hover .d:nth-child(1){
+    top: -40px;
+    opacity: 0.5;
+    transition: top 0.5s,opacity 0.5s;
+}
+/* 下半部分下移并变淡 */
+section .section_item:hover .d:nth-child(2){
+    top: 40px;
+    opacity: 0.5;
+    transition: top 0.5s,opacity 0.5s;
+}
+
+/* a标签 */
+section .section_item d{
+    position: absolute;
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+section .section_item:hover d{
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+
+/* home基础效果 */
+
+#home .home-position {
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%,-50%);
+}
+
+#home .inner-width{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+  }
+  
+  #home .content{
+    width: 100%;
+    color: #fff;
+  }
+  
+  #home .content h1{
+    font-size: 60px;
+    margin-bottom: 60px;
+  }
+  
+  #home .content h1::after{
+    content: "这是我的地盘";
+    animation: textanim 10s linear infinite;
+  }
+  
+  @keyframes textanim{
+    25%{
+      content: "Welcome";
+    }
+    50%{
+      content: "欢迎";
+    }
+    75%{
+      content: "Hi";
+    }
+  }

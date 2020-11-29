@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--移动端预览 -->
+    <title>首页</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/typo.css">
+    <link rel="stylesheet" href="../static/css/my.css">
+    <link rel="stylesheet" href="../static/lib/prismjs/prism.css">
+    <link rel="stylesheet" href="../static/lib/tocbot/tocbot.css">
+    <link rel="stylesheet" href="../static/css/square.css">
+</head>
+
+<body>
+<!-- 导航 -->
+<nav th:replace="_fragments :: menu(1)"  class=" nav attached segment my-padded-tb-min " style="background-color:#204969;">
+    <div class="ui container">
+        <div class="ui inverted  secondary stackable menu">
+            <a href="#" class="menu-it item my-mobile-hide"><i class="fa fa-github-alt fa-4x"
+                                                               style="color: white;"></i></a>
+            <a href="#" class=" active menu-it item my-mobile-hide"><i class="home icon"></i>首页</a>
+            <a href="#" class="menu-it item my-mobile-hide"><i class="paperclip icon"></i>标签</a>
+            <a href="#" class="menu-it item my-mobile-hide"><i class="tags icon"></i>分类</a>
+            <a href="#" class="menu-it item my-mobile-hide"><i class="coffee icon"></i>关于</a>
+            <a href="#" class="menu-it item my-mobile-hide"><i class="folder icon"></i>总览</a>
+            <!-- 搜索栏 -->
+            <div class="right menu-it item my-mobile-hide">
+                <div class="ui icon input">
+                    <input type="text" placeholder="查查啊，查查看有没有">
+                    <i class="search link icon"></i>
+                </div>
+            </div>
+        </div>
+        <!-- 移动端菜单 -->
+        <div class="ui menu toggle icon secondary button my-top-right my-nonmobile-hide">
+            <!-- class值 menu toggle -->
+            <i class="fa fa-github-alt fa-2x" style="color:white;"></i></i></div>
+    </div>
+</nav>
+<!-- 中间内容 -->
+<div id="waypoint" class="my-padded-tb-lager animate__animated animate__fadeIn">
+    <div class="ui container">
+        <div class="ui stackable grid">
+            <!-- stackable可堆叠 -->
+            <!-- 左边内容 -->
+            <div class="eleven wide column">
+                <!-- header -->
+                <div class="ui basic segment" style="border: 0ch;">
+
+                    <!-- 垂直方向居中 -->
+                    <div class="column">
+                        <h1 class="ui  header" style="color: #204969;">文章</h1>
+                    </div>
+                    <!--<div class="column">
+                        共<h1 class="ui  header" style="color: #204969;" th:text="${page.totalElements}"></h1>篇
+                    </div>-->
+
+                </div>
+
+
+                <!-- 中间内容 -->
+                <div class="ui js-toc-content basic  attached segment" style="border: 0ch;">
+                    <div class="ui padded vertical segment my-padded-tb-lager">
+
+                            <div class="ui mobile reversed stackable grid" th:each="blog : ${page.content}"><!--循环-->
+                                <div class="six wide column">
+                                    <!-- 文章配图 -->
+                                    <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank">
+                                        <img src="https://picsum.photos/id/1044/800/500" th:src="@{${blog.firstPicture}}" alt="" class="ui rounded image">
+                                    </a>
+                                </div>
+                                <!-- 左边正文 -->
+                                <div class="ten wide column">
+                                    <h3 class="ui header" style="color: #204969;"><a href="#" th:href="@{/blog/{id}(id=${blog.id})}"  target="_blank" th:text="${blog.title}">一个标题</a></h3>
+                                    <p class=" my-text" th:text="|${blog.description}...|">
+                                        法律是维护国家稳定、各项事业蓬勃发展的最强有力的武器，也是捍卫人民群众权利和利益的工具，也是统治者统治被统治者的手段。法律是一系列的规则，通常需要经由一套制度来落实。但在不同的地方，法律体系会以不同的方式来阐述人们的法律权利与义务。
+                                    </p>
+                                    <!-- 文章下行相关数据和标签 -->
+                                    <div class="ui grid">
+                                        <div class="eleven wide column">
+                                            <!-- 头部作者信息 -->
+                                            <div class="ui  horizontal link list ">
+                                                <div class="middle aligned item">
+                                                    <img src="https://picsum.photos/id/1003/100/100" th:src="@{${blog.user.avatar}}" alt=""
+                                                         class="ui avatar image"><!-- 头像 -->
+                                                    <div class="content"><a href="#" target="_blank" th="${blog.user.nickname}">苟利国</a></div><!-- 姓名昵称 -->
+                                                </div>
+                                                <div class="middle aligned item">
+                                                    <div ><i class="calendar alternate outline icon icon"></i>
+                                                        <span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">时间</span>
+                                                    </div>
+                                                </div>
+                                                <div class="middle aligned item">
+                                                    <span th:text="${blog.views}">浏览次数</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- 标签 -->
+                                        <div class="five wide column">
+                                            <a href="#" target="_blank" class="ui  basic label my-padding-min my-text-thin" th:text="${blog.type.name}">分类1</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                    </div>
+                </div>
+
+                <!-- 底部内容上下页 -->
+                <div class="ui bottom attached basic segment" style="border: 0ch;">
+                    <div class="ui middle aligned two column grid">
+                        <div class="column"><!-- 左边 -->
+                            <a href="#" th:href="@{/(page=${page.number-1})}" class="ui min basic button" style=" border: 1px solid #204969;">
+                                <div style="color: #204969;">上一页</div>
+                            </a>
+                        </div>
+                        <div class="right aligned column"><!-- 右边 -->
+                            <a href="#" th:href="@{/(page=${page.number-1})}" class="ui min basic button" style=" border: 1px solid #204969;">
+                                <div style="color: #204969;">下一页</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- 右边内容 -->
+            <div class="five wide column">
+                <br>
+                <br>
+                <br>
+                <div class="ui basic stackable segment">
+                    <div class="ui stackable  container">
+                        <div class="square my-position-center">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <div class="content-s" th:each="blog : ${newBlogs}">
+                                <h2 th:text="${blog.title}">这里是标题</h2>
+                                <p th:text="|${blog.description}...|">以后这里会放些文章概要</p>
+                                <a href="#" class="content-s-a" th:href="@{/blog/{id}(id=${blog.id})}">了解更多</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 最新内容 -->
+                <div class="ui basic segment my-padded-tb-lager" >
+                    <div class="ui container">
+                        <div class="square2 my-position-center">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <div class="content-s2" th:each="blog : ${newBlogs}">
+                                <h2 th:text="${blog.title}">这里是标题</h2>
+                                <p th:text="|${blog.description}...|">以后这里会放些文章概要</p>
+                                <a href="#" class="content-s-a2" th:href="@{/blog/{id}(id=${blog.id})}">了解更多</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--分类列表-->
+                <div class="ui secondary vertical pointing menu"  style="width: auto !important;">
+                    <a class="item" th:each="type : ${types}">
+                        <span th:text="${type.name}">分类1</span>
+                    </a>
+                    <!--<a class="item">
+                        分类2
+                    </a>
+                    <a class="item active">
+                        分类3
+                    </a>-->
+                </div>
+
+
+                <!-- <div class="ui basic segment my-padded-tb-lager">
+                    标签内容
+                    <a class="ui tag label ">New</a>
+                    <a class="ui red tag label">Upcoming</a>
+                    <a class="ui teal tag label">Featured</a>
+                </div> -->
+
+                <!-- 二维码 -->
+                <div class="ui horizontal divider header" style="color: #204969;">友情链接</div>
+                <div class="ui container my-padded-tb-lager">
+                    <div style="position: relative; ">
+                        <div class="ui centered  card" style="width: 9em;">
+                            <img src="../static/images/myQR.jpg" th:src="@{/images/myQR.jpg}" alt="" class="ui rounded image  ">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 浮标 -->
+<div id="toolbar" class=" my-padded-tb-max  my-fixedPosition my-left-button" style="display: none;">
+    <div class="ui vertical icon buttons">
+
+        <button id="toTop" type="button" class="ui  basic button ">
+            <i class="fa fa-angle-up fa-2x" style="color: #204969;"></i>
+        </button>
+        <button type="button" class="ui toc basic button ">
+            <div class=" my-logo-menu"><i class="fa fa-github-alt fa-2x" style="color: #204969;"></i></div>
+        </button>
+        <button class="ui wechat icon basic button"><i class="fa fa-weixin fa-2x"
+                                                       style="color: #204969;"></i></button>
+        <a href="#bottom-container" class="ui basic button"><i class="fa fa-angle-down fa-2x" style="color: #204969;"></i>
+    </a>
+    </div>
+</div>
+</div>
+<!-- 浮标-目录 -->
+<div class="ui toc-container flowing  popup  transition hidden" style="width: 250px;">
+    <!-- 弹窗效果 -->
+    <ol class="js-toc">
+        <!-- 生成的目录 -->
+
+    </ol>
+</div>
+<!-- 浮标-wechat扫码了解详情 -->
+<div id="qrcode" class="ui scanQR flowing  popup  transition hidden">
+    <!-- <img src="./static/images/myQR.jpg" alt="" style="width: 120px;"> -->
+</div>
+
+<!-- 底部 -->
+<footer class="ui vertical segment my-padded-tb-max" style="background-color:#204969;">
+    <div id="bottom-container" class="ui center aligned container">
+        <div class="ui mobile reversed stackable  divided grid">
+            <!-- 按列布局16 -->
+            <div class="four wide column">
+                <div class="ui  link list">
+                    <div class="item">
+                        <img src="../static/images/myQR.jpg" th:src="@{/images/myQR.jpg}" class="ui rounded image" alt="" style="width: 100px;">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="four wide column">
+                <h4 class="ui  header  " style="color: #fff7f7;">最新内容</h4>
+                <div class="ui  link list">
+                    <a href="#" class="item" style="color: #fff7f7;">不知道写什么</a>
+                    <a href="#" class="item" style="color: #fff7f7;">练练手</a>
+                    <a href="#" class="item" style="color: #fff7f7;">好好学习</a>
+                    <a href="#" class="item" style="color: #fff7f7;">天天向上</a>
+                </div>
+            </div>
+
+            <div class="four wide column">
+                <h4 class="ui  header " style="color: #fff7f7;"> 联系</h4>
+                <div class="ui  link list">
+                    <a href="#" class="item" style="color: #fff7f7;">weixn </a>
+                    <a href="#" class="item" style="color: #fff7f7;">qq</a>
+                    <a href="#" class="item" style="color: #fff7f7;">weibo</a>
+                    <a href="#" class="item" style="color: #fff7f7;">e-mail</a>
+                </div>
+            </div>
+            <div class="four wide column">
+                <h4 class="ui  header " style="color: #fff7f7;">关于我</h4>
+                <div class="ui  link list">
+                    <a href="#" class="item" style="color: #fff7f7;">不知道写什么</a>
+                    <a href="#" class="item" style="color: #fff7f7;">练练手</a>
+                    <a href="#" class="item" style="color: #fff7f7;">好好学习</a>
+                    <a href="#" class="item" style="color: #fff7f7;">天天向上</a>
+                </div>
+            </div>
+
+        </div>
+        <div class="ui  section divider"></div><!--  底部分割线 -->
+        <p class="my-text-w-spacing my-text-thin my-opacity-min" style="color: #fff7f7;">Copyright ©2020-2021 zsw
+            Designed by zsw</p>
+    </div>
+
+</footer>
+    <script src=https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
+    <script src="../static/lib/prismjs/prism.js" th:src="@{/lib/prismjs/prism.js}"></script>
+    <script src="../static/lib/editormd/editormd.min.js" th:src="@{/lib/editormd/editormd.min.js}"></script>
+    <script src="../static/lib/tocbot/tocbot.min.js" th:src="@{/lib/tocbot/tocbot.min.js}"></script>
+    <script src="../static/lib/qrcode/qrcode.min.js" th:src="@{/lib/qrcode/qrcode.min.js}"></script>
+    <script src="../static/lib/waypoints/jquery.waypoints.min.js" th:src="@{/lib/waypoints/jquery.waypoints.min.js}"></script>
+<script>
+    $('.menu.toggle').click(function () {
+        $('.menu-it').toggleClass('my-mobile-hide');//开关功能
+    }); //获取bottom按钮触发click事件
+
+
+
+    // 点击弹出
+    //  $('.example .custom.button')
+    //   .popup({
+    //     popup : $('.custom.popup'),
+    //     on    : 'click'
+    //   });
+
+    $('.payButton.button')
+        .popup({
+            popup: $('.payQR.popup'),
+            on: 'click',
+            position: 'top center'
+        });
+
+    $('.wechat.button')
+        .popup({
+            popup: $('.scanQR.popup'),
+            on: 'hover',
+            position: 'right center'
+        });
+    //初始化tocbot插件
+    tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.js-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.js-toc-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3',
+        // For headings inside relative or absolute positioned containers within content.
+        hasInnerContainers: true,
+    });
+
+    $('.toc.button')
+        .popup({
+            popup: $('.toc-container.popup'),
+            on: 'hover',
+            position: 'right center'
+        });
+    //二维码生成插件
+    var qrcode = new QRCode("qrcode", {
+        text: "http://jindo.dev.naver.com/collie",
+        width: 120,
+        height: 120,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+    });
+    //平滑效果
+    $('#toTop').click(function () {
+        $(window).scrollTo(0, 500);
+    });
+
+    //滚动检测
+    var waypoint = new Waypoint({
+        element: document.getElementById('waypoint'),
+        handler: function (direction) {
+            if (direction == 'down') {
+                $('#toolbar').show(500);
+            } else {
+                $('#toolbar').hide(500);
+
+            }
+            console.log('Scrolled to waypoint!')
+        }
+    })
+
+</script>
+</body>
+
+</html>
